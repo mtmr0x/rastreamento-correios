@@ -1,0 +1,6 @@
+[package]
+name = "rastreamento"
+version = "0.1.0"
+authors = ["Matheus Marsiglio <matmarsiglio@gmail.com>"]
+
+[dependencies]
