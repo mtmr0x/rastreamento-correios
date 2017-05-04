@@ -1,6 +1,8 @@
 [package]
 name = "rastreamento"
 version = "0.1.0"
-authors = ["Matheus Marsiglio <matmarsiglio@gmail.com>"]
+authors = ["Matheus Marsiglio <matmarsiglio@gmail.com>", "Rogerio Moura <roger0.rm@gmail.com>"]
 
-[dependencies]
+[dependencies.nickel]
+version = "*"
+
