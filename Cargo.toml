@@ -6,3 +6,6 @@ authors = ["Matheus Marsiglio <matmarsiglio@gmail.com>", "Rogerio Moura <roger0.
 [dependencies.nickel]
 version = "*"
 
+[dependencies]
+rustc-serialize = "*"
+
