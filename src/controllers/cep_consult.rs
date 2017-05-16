@@ -27,7 +27,7 @@ pub mod cep_consult_controller {
         }
     }
 
-    pub fn receive_cep(cep: String) {
+    pub fn receive_cep(cep: String) -> Json {
         let cep_number = CEPResponse {
             cep: cep.to_string(),
             tipo_de_logradouro: "".to_string(),
@@ -37,9 +37,7 @@ pub mod cep_consult_controller {
             estado: "".to_string(),
         };
 
-        println!("vish {}", cep_number.to_json());
-
-        cep_number.to_json();
+        cep_number.to_json()
     }
 }
 
