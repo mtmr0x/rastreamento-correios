@@ -8,4 +8,5 @@ version = "*"
 
 [dependencies]
 rustc-serialize = "*"
+hyper = "*"
 

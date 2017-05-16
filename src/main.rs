@@ -1,35 +1,25 @@
 #[macro_use] extern crate nickel;
 extern crate rustc_serialize;
 
-use std::collections::BTreeMap;
 use nickel::status::StatusCode;
-use nickel::{Nickel, HttpRouter};
+use nickel::{Nickel, HttpRouter, MediaType};
 use rustc_serialize::json::{Json, ToJson};
 
-#[derive(RustcDecodable, RustcEncodable)]
-struct Person {
-    person_name: String,
-}
+mod controllers;
 
-impl ToJson for Person {
-    fn to_json(&self) -> Json {
-        let mut map = BTreeMap::new();
-        map.insert("person_name".to_string(), self.person_name.to_json());
-        Json::Object(map)
-    }
-}
+use controllers::cep_consult::cep_consult_controller::receive_cep;
 
 fn main() {
     let mut server = Nickel::new();
+
     server.get("/", middleware!("Hello Fucking World"));
 
-    server.get("/:name", middleware! {|req|
-        let name = req.param("name").unwrap();
+    server.get("/cep/:cepnumber", middleware! { |req, mut res|
+        let cep_number_param = req.param("cepnumber").unwrap();
+        res.set(MediaType::Json);
 
-        let person = Person {
-            person_name: name.to_string(),
-        };
-        person.to_json()
+        println!("cep is {:?}", receive_cep(cep_number_param.to_string()));
+        receive_cep(cep_number_param.to_string());
     });
 
     server.listen("127.0.0.1:6767");
